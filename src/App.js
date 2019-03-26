@@ -1,25 +1,38 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./homerdonuts.png";
+import "./App.css";
+import Quotes from "./Quotes";
+
+
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this)
+    this.state = { on: true };
+  }
+
+  handleClick = () => {
+    this.setState({ on: !this.state.on });
+
+  };
   render() {
+    const IsWorking = this.state.on ? 'HomerIsWorking' : 'OnBreak';
+    const text = this.state.on ? 'Homer Is Working' : 'Break : Time for donuts !!';
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+
+          <img src={logo} className={IsWorking} alt="logo" />
+          <h1 className="App-title">Simpsons Quotes</h1>
+          <button onClick={this.handleClick}
+          >{text.toUpperCase()}</button>
         </header>
+
+
+        <Quotes />
+
       </div>
     );
   }
